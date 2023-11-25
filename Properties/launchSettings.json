@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "EmployeeManager.Api": {
+    "PersonManager.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

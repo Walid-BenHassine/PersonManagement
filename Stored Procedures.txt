@@ -1,0 +1,60 @@
+CREATE PROCEDURE [dbo].[Persons_SelectAll]
+AS
+	SELECT PersonID, FirstName, LastName, BirthDate, StartDate, EndDate, Position FROM Persons ORDER BY FirstName ASC
+RETURN 0
+
+CREATE PROCEDURE [dbo].[Positions_SelectAll]
+AS
+	SELECT PositionID, PositionName, Entreprise FROM Positions ORDER BY PositionName ASC
+RETURN 0
+
+CREATE PROCEDURE [dbo].[Persons_SelectByID]
+	@PersonID int
+AS
+	SELECT PersonID, FirstName, LastName, BirthDate, StartDate, EndDate, Position FROM Persons WHERE PersonID = @PersonID
+RETURN 0
+
+
+
+CREATE PROCEDURE [dbo].[Persons_Insert]
+	@FirstName NVARCHAR(20),
+	@LastName NVARCHAR(20),
+	@BirthDate DATETIME,
+	@StartDate DATETIME,
+	@EndDate DATETIME,
+	@Position NVARCHAR(20),
+	@PersonID INT OUT
+AS
+	INSERT INTO Employees(FirstName,LastName,BirthDate,StartDate,EndDate,Position) VALUES(@FirstName,@LastName,@BirthDate,@StartDate,@EndDate,@Position);
+	SET @PersonID = SCOPE_IDENTITY();
+RETURN 0
+
+
+
+CREATE PROCEDURE [dbo].[Persons_Update]
+	@PersonID INT,
+	@FirstName NVARCHAR(20),
+	@LastName NVARCHAR(20),
+	@BirthDate DATETIME,
+	@StartDate DATETIME,
+	@EndDate DATETIME,
+	@Position NVARCHAR(20)
+AS
+	UPDATE Persons SET 
+	FirstName=@FirstName,
+	LastName=@LastName,
+	BirthDate=@BirthDate,
+	StartDate=@StartDate,
+	EndDate=@EndDate,
+	Position=@Position
+	WHERE PersonID = @PersonID;
+RETURN 0
+
+
+
+CREATE PROCEDURE [dbo].[Persons_Delete]
+	@PersonID INT
+AS
+	DELETE FROM Persons WHERE PersonID = @PersonID;
+RETURN 0
+
